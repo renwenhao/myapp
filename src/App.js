@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import {connect} from 'react-redux'
 import { addGun ,removeGun,addGunAsync} from './reducer'
+@connect(state=>({state}),{addGun ,removeGun,addGunAsync})
 class App extends Component {
   render() {
     console.log('this.props:',this.props);
@@ -18,5 +19,5 @@ class App extends Component {
     );
   }
 }
-App = connect(state=>({state}),{addGun ,removeGun,addGunAsync})(App);
+// App = connect(state=>({state}),{addGun ,removeGun,addGunAsync})(App);
 export default App;

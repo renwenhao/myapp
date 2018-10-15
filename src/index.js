@@ -19,3 +19,7 @@ ReactDOM.render((<Provider store = {store}>
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+// babel < 7 cnpm install babel-plugin-transform-decorators-legacy --save-dev (connect装饰器插件)
+// babel > 7 cnpm install @babel/plugin-proposal-decorators --save-dev  ("plugins": [ ["@babel/plugin-proposal-decorators", { "legacy": true }]] )
+ 
