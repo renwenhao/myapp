@@ -15,6 +15,7 @@
     "bfj": "6.1.1",
     "case-sensitive-paths-webpack-plugin": "2.1.2",
     "chalk": "2.4.1",
+    "cookie-parser": "^1.4.3",
     "css-loader": "1.0.0",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
@@ -116,6 +117,13 @@
     ],
     "plugins": [
       [
+        "import",
+        {
+          "libraryName": "antd-mobile",
+          "style": "css"
+        }
+      ],
+      [
         "@babel/plugin-proposal-decorators",
         {
           "legacy": true
@@ -124,7 +132,9 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-decorators": "^7.1.2"
+    "@babel/plugin-proposal-decorators": "^7.1.2",
+    "antd-mobile": "^2.2.5",
+    "babel-plugin-import": "^1.10.0"
   },
-  "proxy":"http://localhost:9000"
+  "proxy": "http://localhost:9000"
 }

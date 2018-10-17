@@ -11,6 +11,26 @@ import Solider from './Solider'
   }
 },{addGun ,removeGun,addGunAsync,reset})
 class App extends Component {
+  state = {
+    lists : []
+  }
+  // componentWillMount(){
+  //   const _this = this;
+  //   axios.get('/user', {
+  //     params: {
+  //       ID: 12345
+  //     }
+  //   })
+  //   .then(function (response) {
+  //     console.log(response);
+  //     _this.setState({
+  //       lists:response.data
+  //     })
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+  // }
   render() {
     const {num,addGun,removeGun,addGunAsync} = this.props;
     return (
@@ -19,6 +39,7 @@ class App extends Component {
         <button onClick = {addGun}>申请武器</button>
         <button onClick = {removeGun}>上交武器</button>
         <button onClick = {addGunAsync}>两秒后拿武器</button>
+        <Solider lists={this.state.lists}/>
       </div>
       
     );

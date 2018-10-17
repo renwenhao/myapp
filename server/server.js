@@ -19,7 +19,7 @@ const Test = mongoose.model('test',new mongoose.Schema({
 }))
 
 const User = mongoose.model('user',new mongoose.Schema({
-    name:{
+    user:{
         type:String,
         require:true
     },
@@ -28,14 +28,22 @@ const User = mongoose.model('user',new mongoose.Schema({
         require:true
     }
 }));
+
 User.create({
-    name:'小明',
+    user:'小明',
     age:25
 },function(err,doc){
     if(!err){
         console.log('doc:',doc);
     }else{
         console.log('err:',err);
+    }
+})
+User.remove({
+    age:25
+},function(err,doc){
+    if(!err){
+        console.log('=doc',doc);
     }
 })
 app.get('/',function(req,res){
@@ -45,6 +53,13 @@ app.get('/user',function(req,res){
     User.find({},function(err,doc){
         if(!err){
             res.json(doc)
+        }
+    })
+});
+app.get('/userData',function(req,res){
+    User.findOne({user:'小明'},function(err,doc){
+        if(!err){
+            res.json(doc);
         }
     })
 });

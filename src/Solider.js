@@ -11,7 +11,7 @@ class Solider extends React.Component{
             {
                 this.props.lists.map(item=>{
                     return <li key = {item._id}>{item.user}_{item.age}</li>
-                })
+                }) || null
             }
         </ul>
     }

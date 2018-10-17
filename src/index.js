@@ -5,10 +5,11 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux' 
 import { BrowserRouter,HashRouter,Route,Link,Switch ,Redirect} from 'react-router-dom'
 import './index.css';
-
+import './config'
 import * as serviceWorker from './serviceWorker';
 import reducer from './reducer'
-import Login from './Login'
+import Login from './container/login/login'
+import Register from './container/register/register'
 import DashBoard from './DashBoard'
 console.log('reducer',reducer);
 const store = createStore(reducer,compose(
@@ -33,7 +34,7 @@ ReactDOM.render((<Provider store = {store}>
     <HashRouter>
         <Switch>
             <Route path="/login" exact component={Login}></Route>
-            <Route path="/dashboard" component={DashBoard}></Route>
+            <Route path="/register" component={Register}></Route>
             <Redirect to="/login"></Redirect>
         </Switch>
     </HashRouter>
@@ -42,7 +43,7 @@ ReactDOM.render((<Provider store = {store}>
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// serviceWorker.unregister();
 
 // babel < 7 cnpm install babel-plugin-transform-decorators-legacy --save-dev (connect装饰器插件)
 // babel > 7 cnpm install @babel/plugin-proposal-decorators --save-dev  ("plugins": [ ["@babel/plugin-proposal-decorators", { "legacy": true }]] )
