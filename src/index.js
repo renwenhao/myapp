@@ -7,9 +7,10 @@ import { BrowserRouter,HashRouter,Route,Link,Switch ,Redirect} from 'react-route
 import './index.css';
 import './config'
 import * as serviceWorker from './serviceWorker';
-import reducer from './reducer'
+import reducer from './redux'
 import Login from './container/login/login'
 import Register from './container/register/register'
+import UserInfo from './components/user/user'
 import DashBoard from './DashBoard'
 console.log('reducer',reducer);
 const store = createStore(reducer,compose(
@@ -32,11 +33,11 @@ class Test extends React.Component{
 }
 ReactDOM.render((<Provider store = {store}>
     <HashRouter>
-        <Switch>
+        <div>
+            <UserInfo/>
             <Route path="/login" exact component={Login}></Route>
             <Route path="/register" component={Register}></Route>
-            <Redirect to="/login"></Redirect>
-        </Switch>
+        </div>
     </HashRouter>
 </Provider>), document.getElementById('root'));
 
