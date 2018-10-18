@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import {getPath} from '../utils'
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 const ERRORMSG = 'ERRORMSG';
 const RESET_STATE = 'RESET_STATE';
@@ -8,16 +8,19 @@ const initState = {
     username:"",
     password:"",
     value:"",
-    msg:''
+    msg:'',
+    redirectTo:'',
 }
 
 //reducer
 export function user(state = initState,action){
+    console.log('action',action);
     switch(action.type){
         case ERRORMSG:
             return {
                 ...state,
                 isAuth:false,
+                redirectTo:'',
                 msg:action.payload
             }
         case REGISTER_SUCCESS:
@@ -25,6 +28,7 @@ export function user(state = initState,action){
                 ...state,
                 msg:'',
                 isAuth:true,
+                redirectTo:getPath(action.payload.value),
                 ...action.payload || {}
             }
         case RESET_STATE:
@@ -67,7 +71,7 @@ export function register({username,password,repassword,value}){
                     console.log('执行到这儿来了');
                     dispatch(error_msg(res.data.msg))
                 }else{
-                    dispatch(register_success())
+                    dispatch(register_success(res.data))
                 }
             }
         })

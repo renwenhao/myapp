@@ -5,7 +5,6 @@ import {bindFunc} from '../../utils'
 export default class extends React.Component {
   constructor(props){
     super(props);
-    console.log('this',this);
   }
   state = {
 
@@ -20,7 +19,6 @@ export default class extends React.Component {
     
   }
   register(){
-    console.log('this',this);
     this.props.history.push('/register');
   }
   render() {

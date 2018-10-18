@@ -4,12 +4,7 @@ const userRouter = express.Router();
 
 const model = require('../model');
 const User = model.getModel('user');
-// User.remove({},function(err,doc){
-//     if(!err){
-//         console.log('删除成功');
-//     }
-// })
-console.log('User',User);
+
 userRouter.get('/list',function(req,res){
     User.find({},function(err,doc){
         if(!err){
@@ -18,9 +13,7 @@ userRouter.get('/list',function(req,res){
     })
 })
 userRouter.post('/register',function (req,res){
-    console.log('res',req.body);
     User.find({username:req.body.username},function(err,doc){
-        console.log('doc',doc);
         if(doc.length){
             return res.json({
                 msg:'用户名已经存在',
@@ -28,18 +21,21 @@ userRouter.post('/register',function (req,res){
             })
         }
         const userInfo = req.body;
-        console.log('userInfo',userInfo);
         User.create(userInfo,function(err,doc){
-            console.log('ddddoc',doc);
+            console.log('doc',  doc.username);
             if(err){
                 return res.json({
                     'msg':'服务器出错',
                      code:1,
                 })
             }else{
-                return res.json({
+                const result = {
+                    username:doc.username,
+                    password:doc.password,
+                    value:doc.value,
                     code:0,
-                });
+                }
+                return res.json(result);
             }
         })
     })

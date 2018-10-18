@@ -23,3 +23,12 @@ export function bindFunc(args){
         // }
     }
 }
+
+
+export function getPath(type,avatar){
+    let url = type == 0 ? '/boss' : '/genius';
+    if(!avatar){
+        url += 'info';
+    }
+    return url;
+}
