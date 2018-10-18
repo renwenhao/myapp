@@ -1,3 +1,4 @@
+const utils = require('utility');
 const express = require('express');
 
 const userRouter = express.Router();
@@ -5,6 +6,11 @@ const userRouter = express.Router();
 const model = require('../model');
 const User = model.getModel('user');
 
+userRouter.get('/info',function(req,res){
+    res.json({
+        code:1
+    })
+})
 userRouter.get('/list',function(req,res){
     User.find({},function(err,doc){
         if(!err){
@@ -12,6 +18,31 @@ userRouter.get('/list',function(req,res){
         }
     })
 })
+
+userRouter.post('/login',function(req,res){
+    User.find({username:req.body.username,password:req.body.password},{password:0},function(err,doc){
+        if(!err){
+            if(doc.length){
+                res.json({
+                    code:0,
+                    data:doc[0]
+                })
+            }else{
+                res.json({
+                    code:1,
+                    msg:'用户名或者密码不正确'
+                })
+            }
+            
+        }else{
+            res.json({
+                code:1,
+                msg:'服务端出错'
+            })
+        }
+    })
+})
+
 userRouter.post('/register',function (req,res){
     User.find({username:req.body.username},function(err,doc){
         if(doc.length){
